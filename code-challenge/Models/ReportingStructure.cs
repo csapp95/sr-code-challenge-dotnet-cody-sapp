@@ -26,6 +26,34 @@ namespace challenge.Models
         /// </summary>
         public int NumberOfReports { get; set; }
 
+        public ReportingStructure(Employee employee)
+        {
+            this.Employee = employee;
+            this.NumberOfReports = CalculateNumberOfReports(employee);
+        }
 
+        /// <summary>
+        /// Traverses recurrsively through DirectReports of the given employee
+        /// and returns the count of DirectReports for the given employee which
+        /// includes any DirectReports of reporting employees.
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
+        private int CalculateNumberOfReports(Employee employee)
+        {   
+
+            int totalReports = 0;
+
+            if(employee.DirectReports.Count > 0)
+            {
+                totalReports += employee.DirectReports.Count;
+                foreach (Employee e in employee.DirectReports)
+                {
+                    totalReports += CalculateNumberOfReports(e);
+                }
+            }
+            
+            return totalReports; 
+        }
     }
 }
