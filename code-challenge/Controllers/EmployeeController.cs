@@ -57,5 +57,20 @@ namespace challenge.Controllers
 
             return Ok(newEmployee);
         }
+
+        [HttpGet("{id}")]
+        public IActionResult ReportingStructure(String id)
+        {
+            _logger.LogDebug($"Received employee report structure request for '{id}'.");
+
+            var employee = _employeeService.GetById(id);
+
+            if (employee == null)
+                return NotFound();
+            
+            ReportingStructure reportingStructure = new ReportingStructure(employee);
+
+            return Ok(reportingStructure);
+        }
     }
 }
