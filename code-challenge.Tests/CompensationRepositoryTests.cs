@@ -8,5 +8,8 @@ namespace code_challenge.Tests.Integration
     [TestClass]
     public class CompensationRepositoryTests
     {
+        
+
+
     }
 }
