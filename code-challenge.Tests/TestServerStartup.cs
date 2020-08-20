@@ -30,6 +30,16 @@ namespace code_challenge.Tests.Integration
             services.AddScoped<IEmployeeRepository,EmployeeRespository>();
             services.AddTransient<EmployeeDataSeeder>();
             services.AddScoped<IEmployeeService, EmployeeService>();
+
+            //add CompensationContext
+            services.AddDbContext<CompensationContext>(options =>
+            {
+                options.UseInMemoryDatabase("CompensationDB");
+            });
+            //add CompensationRepository
+            services.AddScoped<ICompensationRepository, CompensationRepository>();
+            //add CompensationService
+            services.AddScoped<ICompensationService, CompensationService>();
             services.AddMvc();
         }
 
