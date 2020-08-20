@@ -10,7 +10,7 @@ namespace challenge.Services
     {
         Compensation GetById(String id);
         Compensation Create(Compensation compensation);
-        Compensation Replace(Compensation compensation);
+        Compensation Replace(Compensation originalComp, Compensation newComp);
 
     }
 }
