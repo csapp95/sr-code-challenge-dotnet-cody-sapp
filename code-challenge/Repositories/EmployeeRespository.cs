@@ -29,6 +29,8 @@ namespace challenge.Repositories
 
         public Employee GetById(string id)
         {
+            //Needed to add the Include to force the eager loading, or else the DirectReports lists
+            //of the return Employee would be null when it was infact populated for the Employee.
             return _employeeContext.Employees.Include(i=>i.DirectReports).SingleOrDefault(e => e.EmployeeId == id);
         }
 
