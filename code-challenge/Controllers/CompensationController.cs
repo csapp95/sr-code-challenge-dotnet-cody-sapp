@@ -9,12 +9,21 @@ using System.Threading.Tasks;
 
 namespace challenge.Controllers
 { 
+    /// <summary>
+    /// CompensationController.cs
+    /// Contains the endpoints related to Compensations
+    /// </summary>
     [Route("api/compensation")]
     public class CompensationController:Controller
     {
         private readonly ICompensationService _compensationService;
         private readonly ILogger<CompensationController> _logger;
-        private readonly IEmployeeService _employeeService;
+        
+        /// <summary>
+        /// Constructor for CompensationController
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="compensationService"></param>
         public CompensationController(ILogger<CompensationController> logger, ICompensationService compensationService)
         {
             _compensationService = compensationService;
@@ -22,10 +31,18 @@ namespace challenge.Controllers
             
         }
 
+        /// <summary>
+        /// CreateCompensation endpoint:
+        /// Post request containing the full compensation object to be created.
+        /// </summary>
+        /// <param name="compensation">Compensation object to be created/added</param>
+        /// <returns>HttpStatusCode.Created on success</returns>
         [HttpPost]
         public IActionResult CreateCompensation([FromBody] Compensation compensation)
         {
             _logger.LogDebug($"Received compensation create request for employee {compensation.Employee.FirstName} {compensation.Employee.LastName}");
+
+            //set the Id to the EmployeeId
             compensation.Id = compensation.Employee.EmployeeId;
 
             _compensationService.Create(compensation);
@@ -34,6 +51,16 @@ namespace challenge.Controllers
 
         }
 
+        /// <summary>
+        /// Get endpoint for Compensation:
+        /// Given the EmployeeId GetCompensationByEmployeeId
+        /// calls CompensationService GetById to get the object
+        /// </summary>
+        /// <param name="id">EmployeeId that the compensation object refers to</param>
+        /// <returns>
+        /// -HttpStatusCode OK with serialized object
+        /// -HttpStatusCode NotFound if no result was found
+        /// </returns>
         [HttpGet("{id}", Name ="getCompensationByEmployeeId")]
         public IActionResult GetCompensationByEmployeeId(String id)
         {

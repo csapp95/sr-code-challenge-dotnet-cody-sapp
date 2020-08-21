@@ -21,15 +21,11 @@ using System.Text;
 namespace code_challenge.Tests.Integration
 {
     [TestClass]
-    public class ReportingStructureTest
+    public class ReportingStructureTests
     {
-        private static EmployeeService _employeeService;
-        private static EmployeeContext _employeeContext;
-        private static EmployeeRespository _employeeRespository;
-        private static EmployeeDataSeeder _employeeDataSeeder;
+        
         private List<Employee> _employees;
-        private static TestServer _testServer;
-        private static HttpClient _httpClient;
+        
 
         private const string JOHN_LENNON_ID = "16a596ae-edd3-4847-99fe-c4518e82c86f";
         private const string PAUL_MCCARTNEY_ID = "b7839309-3348-463b-a7e3-5de1c168beb3";

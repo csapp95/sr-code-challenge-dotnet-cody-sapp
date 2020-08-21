@@ -26,6 +26,11 @@ namespace challenge.Models
         /// </summary>
         public int NumberOfReports { get; set; }
 
+        /// <summary>
+        /// ReportingStructure constructor
+        /// Sets the Employee attribute and calculates the NumberOfReports upon creation
+        /// </summary>
+        /// <param name="employee">The employee of focus</param>
         public ReportingStructure(Employee employee)
         {
             this.Employee = employee;
@@ -44,7 +49,8 @@ namespace challenge.Models
 
             int totalReports = 0;
 
-            if(employee.DirectReports.Count > 0)
+            //if the employee has DirectReports, start counting
+            if(employee.DirectReports != null && employee.DirectReports.Count > 0)
             {
                 totalReports += employee.DirectReports.Count;
                 foreach (Employee e in employee.DirectReports)

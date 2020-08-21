@@ -27,8 +27,4 @@
     <ProjectReference Include="..\code-challenge\code-challenge.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ModelTests\" />
-  </ItemGroup>
-
 </Project>

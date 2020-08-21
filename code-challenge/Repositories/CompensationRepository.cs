@@ -28,7 +28,19 @@ namespace challenge.Repositories
 
         public Compensation Add(Compensation compensation)
         {
-            return null;
+            Compensation addedComp = compensation;
+            try
+            {
+                _compensationContext.CompensationRecords.Add(compensation);
+            }
+            catch(Exception e)
+            {
+                _logger.LogError($"Error Adding Compensation for employee id {compensation.Employee.EmployeeId}. \nMsg:{e.Message} \nTrace:{e.StackTrace}");
+                addedComp = null;
+            }
+
+            return addedComp;
+
         }
 
         public Task SaveAsync()

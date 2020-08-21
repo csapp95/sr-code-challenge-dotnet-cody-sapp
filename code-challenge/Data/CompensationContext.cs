@@ -17,6 +17,9 @@ namespace challenge.Data
 
         }
 
+        /// <summary>
+        /// CompensationRecords is the DbSet that contains the Compensation's
+        /// </summary>
         public DbSet<Compensation> CompensationRecords { get; set; }
     }
 }
